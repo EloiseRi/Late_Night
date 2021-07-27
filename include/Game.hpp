@@ -10,6 +10,8 @@
 #include "Play.hpp"
 #include "Menu.hpp"
 
+#define SPEED 1500.0f
+
 class Game {
     public:
         Game();
@@ -24,6 +26,9 @@ class Game {
     private:
         sf::RenderWindow _window;
         sf::Event _event;
+        sf::View _view;
+        sf::Vector2f _viewPos;
+        sf::Clock _clock;
         unsigned int _gamePaused;
         Menu _menu;
         Play _play;

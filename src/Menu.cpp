@@ -168,8 +168,10 @@ int Menu::catchEvent(sf::RenderWindow &window, sf::Event &event)
     this->HoveringButtons(window);
 
     if (_buttons[0]->_sprite.getGlobalBounds().contains(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y)
-    && event.type == sf::Event::MouseButtonPressed)
+    && event.type == sf::Event::MouseButtonPressed) {
+        _music.stop();
         return 0;
+    }
 
     if (_buttons[1]->_sprite.getGlobalBounds().contains(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y)
     && event.type == sf::Event::MouseButtonPressed)

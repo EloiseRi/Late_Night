@@ -14,12 +14,18 @@ class Play : public Scene
         /* Getter */
         std::vector<Entity *> GetSprites();
 
+        /* Setter */
+        void SetMusic();
+
         void Initialize();
         void LoadSprites();
+        void HandleMusic();
         int catchEvent(sf::RenderWindow&, sf::Event&);
 
     private:
         std::vector<Entity *> _sprites;
+        bool _loopMusic = false;
+        sf::Music _music;
 };
 
 #endif /* !PLAY_HPP_ */
