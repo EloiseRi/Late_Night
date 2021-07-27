@@ -15,6 +15,7 @@ Game::~Game()
 void Game::setScenes()
 {
     _menu.Initialize();
+    _play.Initialize();
 }
 
 void Game::CatchEvent()
@@ -24,7 +25,8 @@ void Game::CatchEvent()
         if (_event.type == sf::Event::Closed)
             _window.close();
 
-        _gamePaused = _menu.catchEvent(_window, _event);
+        if (_menu.catchEvent(_window, _event) == 0)
+            _gamePaused = 0;
     }
 }
 
@@ -43,6 +45,12 @@ void Game::DrawMenu()
     _window.draw(_menu.GetTitle());
 }
 
+void Game::DrawGame()
+{
+    for (auto &sprite : _play.GetSprites())
+        _window.draw(sprite->_sprite);
+}
+
 int Game::Loop()
 {
     this->setScenes();
@@ -54,8 +62,7 @@ int Game::Loop()
         if (_gamePaused) {
             this->DrawMenu();
         } else {
-            // _play.Draw();
-            std::cout << "GAME" << std::endl;
+            this->DrawGame();
         }
 
         _window.display();

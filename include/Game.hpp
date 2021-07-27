@@ -18,6 +18,7 @@ class Game {
         void setScenes();
         void CatchEvent();
         void DrawMenu();
+        void DrawGame();
         int Loop();
 
     private:

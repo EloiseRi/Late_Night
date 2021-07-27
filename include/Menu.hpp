@@ -5,7 +5,6 @@
 
 #define SCRWIDTH 800
 #define SCRHEIGHT 600
-
 class Menu : public Scene
 {
     public:
