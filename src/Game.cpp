@@ -26,6 +26,9 @@ void Game::setMusics()
     if (!_musics.at("game")->openFromFile("music/jazzy.ogg"))
         throw 1;
 
+    _musics.at("menu")->setLoop(true);
+    _musics.at("game")->setLoop(true);
+
     _musics.at("menu")->play();
 }
 
@@ -64,6 +67,8 @@ void Game::DrawMenu()
 
 void Game::DrawGame()
 {
+    _play.openCatEyes();
+
     for (auto &sprite : _play.GetSprites())
         _window.draw(sprite->_sprite);
 }

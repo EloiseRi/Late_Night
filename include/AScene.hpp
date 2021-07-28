@@ -8,6 +8,8 @@ class Scene {
     public:
         ~Scene() = default;
 
+        virtual void SetShader() = 0;
+
         virtual void Initialize() = 0;
         virtual void LoadSprites() = 0;
         virtual int catchEvent(sf::RenderWindow&, sf::Event&, std::map<std::string, sf::Music *> &musics) = 0;

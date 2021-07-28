@@ -15,14 +15,18 @@ class Play : public Scene
         std::vector<Entity *> GetSprites();
 
         /* Setter */
-        void SetMusic();
+        void SetShader();
 
         void Initialize();
         void LoadSprites();
+        void openCatEyes();
         int catchEvent(sf::RenderWindow&, sf::Event&, std::map<std::string, sf::Music *> &musics);
 
     private:
         std::vector<Entity *> _sprites;
+        sf::Clock _catClock;
+        sf::Uint8 _catAlphaChan = 0;
+        bool _catEyes = true;
 };
 
 #endif /* !PLAY_HPP_ */

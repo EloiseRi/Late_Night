@@ -10,7 +10,7 @@
 #include "Play.hpp"
 #include "Menu.hpp"
 
-#define SPEED 1500.0f
+#define SPEED 800.0f
 
 enum class State { MENU, PLAY, PAUSE };
 
