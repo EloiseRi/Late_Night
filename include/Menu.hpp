@@ -20,7 +20,6 @@ class Menu : public Scene
         void SetTitle();
         void SetShader();
 
-        void HandleMusic();
         void LoadSprites();
         void MakeButtons();
         void Initialize();
@@ -28,12 +27,11 @@ class Menu : public Scene
         void Blinking();
         void Flickering();
         void HoveringButtons(sf::RenderWindow &window);
-        int catchEvent(sf::RenderWindow &window, sf::Event &event);
+        int catchEvent(sf::RenderWindow &window, sf::Event &event, std::map<std::string, sf::Music *> &musics);
 
     private:
         sf::Font _font;
         sf::Text _title;
-        sf::Music _music;
         sf::Clock _fadeClock;
         sf::Clock _blinkClock;
         sf::Clock _flickClock;

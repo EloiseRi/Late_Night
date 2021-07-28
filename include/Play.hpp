@@ -19,13 +19,10 @@ class Play : public Scene
 
         void Initialize();
         void LoadSprites();
-        void HandleMusic();
-        int catchEvent(sf::RenderWindow&, sf::Event&);
+        int catchEvent(sf::RenderWindow&, sf::Event&, std::map<std::string, sf::Music *> &musics);
 
     private:
         std::vector<Entity *> _sprites;
-        bool _loopMusic = false;
-        sf::Music _music;
 };
 
 #endif /* !PLAY_HPP_ */

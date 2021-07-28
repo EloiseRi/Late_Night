@@ -47,14 +47,6 @@ void Menu::SetTitle()
     _title.setPosition(SCRWIDTH/2.0f,SCRHEIGHT/2.2f);
 }
 
-void Menu::HandleMusic()
-{
-    if (!_music.openFromFile("music/cyberpunk.ogg"))
-        throw 1;
-    _music.setLoop(true);
-    _music.play();
-}
-
 void Menu::LoadSprites()
 {
     _sprites.push_back(new Entity("img/menu/cyberpunk-street.png"));
@@ -83,7 +75,6 @@ void Menu::MakeButtons()
 void Menu::Initialize()
 {
     this->SetTitle();
-    this->HandleMusic();
     this->LoadSprites();
     this->MakeButtons();
 }
@@ -163,13 +154,14 @@ void Menu::HoveringButtons(sf::RenderWindow &window)
     }
 }
 
-int Menu::catchEvent(sf::RenderWindow &window, sf::Event &event)
+int Menu::catchEvent(sf::RenderWindow &window, sf::Event &event, std::map<std::string, sf::Music *> &musics)
 {
     this->HoveringButtons(window);
 
     if (_buttons[0]->_sprite.getGlobalBounds().contains(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y)
     && event.type == sf::Event::MouseButtonPressed) {
-        _music.stop();
+        musics.at("menu")->stop();
+        musics.at("game")->play();
         return 0;
     }
 

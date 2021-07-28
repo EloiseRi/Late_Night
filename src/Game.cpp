@@ -3,15 +3,30 @@
 
 Game::Game() :
 _window(sf::VideoMode(800, 600, 32), "Late Night", sf::Style::Default),
-_event(), _view(sf::FloatRect(0, 0, 800, 600)), _gamePaused(1)
+_event(), _view(sf::FloatRect(0, 0, 800, 600)), _state(State::MENU)
 {
-    _window.setFramerateLimit(60);
+    _window.setFramerateLimit(120);
     _view.setViewport(sf::FloatRect(0, 0, 1.f, 1.f));
     _window.setView(_view);
 }
 
 Game::~Game()
 {
+   delete _musics.at("menu");
+   delete _musics.at("game");
+}
+
+void Game::setMusics()
+{
+    _musics.insert(std::make_pair<std::string, sf::Music *>(std::string("menu"), new sf::Music()));
+    _musics.insert(std::make_pair<std::string, sf::Music *>(std::string("game"), new sf::Music()));
+
+    if (!_musics.at("menu")->openFromFile("music/cyberpunk.ogg"))
+        throw 1;
+    if (!_musics.at("game")->openFromFile("music/jazzy.ogg"))
+        throw 1;
+
+    _musics.at("menu")->play();
 }
 
 void Game::setScenes()
@@ -27,8 +42,8 @@ void Game::CatchEvent()
         if (_event.type == sf::Event::Closed)
             _window.close();
 
-        if (_menu.catchEvent(_window, _event) == 0)
-            _gamePaused = 0;
+        if (_menu.catchEvent(_window, _event, _musics) == 0)
+            _state = State::PLAY;
     }
 }
 
@@ -58,6 +73,7 @@ int Game::Loop()
     sf::RectangleShape _rect(sf::Vector2f(20, 20));
     _rect.setFillColor(sf::Color::Red);
 
+    this->setMusics();
     this->setScenes();
     while (_window.isOpen())
     {
@@ -65,10 +81,9 @@ int Game::Loop()
         this->CatchEvent();
         _window.clear();
 
-        if (_gamePaused) {
+        if (_state == State::MENU) {
             this->DrawMenu();
         } else {
-            _play.SetMusic();
             this->DrawGame();
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))

@@ -13,24 +13,6 @@ std::vector<Entity *> Play::GetSprites()
     return _sprites;
 }
 
-void Play::SetMusic()
-{
-    if (_loopMusic == false)
-        _loopMusic = true;
-
-    if (_loopMusic)
-        _music.setVolume(35);
-}
-
-void Play::HandleMusic()
-{
-    if (!_music.openFromFile("music/jazzy.ogg"))
-        throw 1;
-    _music.setLoop(true);
-    _music.setVolume(0);
-    _music.play();
-}
-
 void Play::LoadSprites()
 {
     _sprites.push_back(new Entity("img/play/background_long.png"));
@@ -44,11 +26,10 @@ void Play::LoadSprites()
 
 void Play::Initialize()
 {
-    this->HandleMusic();
     this->LoadSprites();
 }
 
-int Play::catchEvent(sf::RenderWindow &window, sf::Event &event)
+int Play::catchEvent(sf::RenderWindow &window, sf::Event &event, std::map<std::string, sf::Music *> &musics)
 {
     return 1;
 }

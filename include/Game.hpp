@@ -12,11 +12,14 @@
 
 #define SPEED 1500.0f
 
+enum class State { MENU, PLAY, PAUSE };
+
 class Game {
     public:
         Game();
         ~Game();
 
+        void setMusics();
         void setScenes();
         void CatchEvent();
         void DrawMenu();
@@ -28,8 +31,9 @@ class Game {
         sf::Event _event;
         sf::View _view;
         sf::Vector2f _viewPos;
+        std::map<std::string, sf::Music *> _musics;
         sf::Clock _clock;
-        unsigned int _gamePaused;
+        State _state;
         Menu _menu;
         Play _play;
 };
