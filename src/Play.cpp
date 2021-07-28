@@ -1,4 +1,5 @@
 #include "Play.hpp"
+#include <iostream>
 
 Play::Play()
 {
@@ -28,7 +29,7 @@ void Play::openCatEyes()
 
         if (_catAlphaChan == 255)
             _catEyes = false;
-    } else if (_catClock.getElapsedTime().asSeconds() > 3.f && _catAlphaChan > 0.f && _catEyes == false) {
+    } else if (_catClock.getElapsedTime().asSeconds() > 0.4f && _catAlphaChan > 0.f && _catEyes == false) {
         _catAlphaChan = 0;
         _catClock.restart();
 
@@ -61,5 +62,8 @@ void Play::Initialize()
 
 int Play::catchEvent(sf::RenderWindow &window, sf::Event &event, std::map<std::string, sf::Music *> &musics)
 {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) ||
+    sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+        std::cout << "PAUSE" << std::endl;
     return 1;
 }

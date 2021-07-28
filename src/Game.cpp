@@ -6,6 +6,7 @@ _window(sf::VideoMode(800, 600, 32), "Late Night", sf::Style::Default),
 _event(), _view(sf::FloatRect(0, 0, 800, 600)), _state(State::MENU)
 {
     _window.setFramerateLimit(120);
+    _window.setVerticalSyncEnabled(true);
     _view.setViewport(sf::FloatRect(0, 0, 1.f, 1.f));
     _window.setView(_view);
 }
@@ -47,6 +48,9 @@ void Game::CatchEvent()
 
         if (_menu.catchEvent(_window, _event, _musics) == 0)
             _state = State::PLAY;
+
+        _play.catchEvent(_window, _event, _musics);
+        _rectPos = _player.catchEvent(_window, _event);
     }
 }
 
@@ -68,21 +72,23 @@ void Game::DrawMenu()
 void Game::DrawGame()
 {
     _play.openCatEyes();
+    _player.Animation();
 
     for (auto &sprite : _play.GetSprites())
         _window.draw(sprite->_sprite);
+    _window.draw(_player.GetSprites()._sprite);
 }
 
 int Game::Loop()
 {
-    sf::RectangleShape _rect(sf::Vector2f(20, 20));
-    _rect.setFillColor(sf::Color::Red);
+    // sf::RectangleShape _rect(sf::Vector2f(20, 20));
+    // _rect.setFillColor(sf::Color::Red);
 
     this->setMusics();
     this->setScenes();
     while (_window.isOpen())
     {
-        _clock.restart();
+        // _clock.restart();
         this->CatchEvent();
         _window.clear();
 
@@ -91,26 +97,23 @@ int Game::Loop()
         } else {
             this->DrawGame();
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-                _rect.move(SPEED * _clock.getElapsedTime().asSeconds(), 0);
-            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-                _rect.move(-SPEED * _clock.getElapsedTime().asSeconds(), 0);
+            // if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && _rect.getPosition().x < 2790)
+            //     _rect.move(SPEED * _clock.getElapsedTime().asSeconds(), 0);
+            // else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && _rect.getPosition().x > 0)
+            //     _rect.move(-SPEED * _clock.getElapsedTime().asSeconds(), 0);
 
-            _viewPos.x = _rect.getPosition().x + 10 - (800 / 2);
-            _viewPos.y = _rect.getPosition().y + 10 - (600 / 2);
+            _viewPos.x = _rectPos.x - (800 / 2);
+            _viewPos.y = 0;
 
             if (_viewPos.x < 0)
                 _viewPos.x = 0;
             if (_viewPos.x > 2000)
                 _viewPos.x = 2000;
-            if (_viewPos.y < 0)
-                _viewPos.y = 0;
         }
-
         _view.reset(sf::FloatRect(_viewPos.x, _viewPos.y, 800, 600));
 
         _window.setView(_view);
-        _window.draw(_rect);
+        // _window.draw(_rect);
 
         _window.display();
     }

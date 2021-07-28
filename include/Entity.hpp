@@ -12,7 +12,7 @@ class Entity {
 
         sf::Texture _texture;
         sf::Sprite _sprite;
-        sf::Rect<int> _rect;
+        sf::IntRect _rect;
 };
 
 #endif /* !ENTITY_HPP_ */

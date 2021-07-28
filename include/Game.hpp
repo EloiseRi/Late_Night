@@ -9,8 +9,9 @@
 #include "AScene.hpp"
 #include "Play.hpp"
 #include "Menu.hpp"
+#include "Character.hpp"
 
-#define SPEED 800.0f
+#define SPEED 550.0f
 
 enum class State { MENU, PLAY, PAUSE };
 
@@ -29,13 +30,15 @@ class Game {
     private:
         sf::RenderWindow _window;
         sf::Event _event;
+        sf::Vector2f _rectPos;
         sf::View _view;
         sf::Vector2f _viewPos;
         std::map<std::string, sf::Music *> _musics;
-        sf::Clock _clock;
+        // sf::Clock _clock;
         State _state;
         Menu _menu;
         Play _play;
+        Character _player;
 };
 
 #endif /* !GAME_HPP_ */
