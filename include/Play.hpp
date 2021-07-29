@@ -20,6 +20,7 @@ class Play : public Scene
         void Initialize();
         void LoadSprites();
         void openCatEyes();
+        void Parallax();
         void Flickering();
         void Blinking();
         int catchEvent(sf::RenderWindow&, sf::Event&, std::map<std::string, sf::Music *> &musics);

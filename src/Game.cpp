@@ -76,12 +76,10 @@ void Game::DrawGame()
     _play.SetShader();
     _player.Animation();
 
-    // for (auto &sprite : _play.GetSprites())
-    //     _window.draw(sprite->_sprite);
-    for (int it = 0; it < 5; it++)
+    for (int it = 0; it < 7; it++)
         _window.draw(_play.GetSprites().at(it)->_sprite);
     _window.draw(_player.GetSprites()._sprite);
-    _window.draw(_play.GetSprites().at(5)->_sprite);
+    _window.draw(_play.GetSprites().at(7)->_sprite);
 }
 
 int Game::Loop()
