@@ -11,8 +11,6 @@
 #include "Menu.hpp"
 #include "Character.hpp"
 
-#define SPEED 550.0f
-
 enum class State { MENU, PLAY, PAUSE };
 
 class Game {
@@ -34,7 +32,6 @@ class Game {
         sf::View _view;
         sf::Vector2f _viewPos;
         std::map<std::string, sf::Music *> _musics;
-        // sf::Clock _clock;
         State _state;
         Menu _menu;
         Play _play;

@@ -10,7 +10,7 @@
 
 #include "Entity.hpp"
 
-#define SPEED_PLAYER 25000.0f
+#define SPEED_PLAYER 4500.0f
 
 enum class Position { IDLE, WALK };
 
