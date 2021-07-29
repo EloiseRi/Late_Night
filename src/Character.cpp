@@ -59,15 +59,19 @@ void Character::Animation()
 
 sf::Vector2f Character::catchEvent()
 {
-    // _moveClock.restart();
-
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && _walk._sprite.getPosition().x > 32) {
         _walk._rect.top = 64;
+        _idle._rect.top = 64;
         _state = Position::WALK;
+        _idle._sprite.setTextureRect(_idle._rect);
+        _walk._sprite.setTextureRect(_walk._rect);
         _walk._sprite.move(-SPEED_PLAYER, 0);
     } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && _walk._sprite.getPosition().x < 2230) {
         _walk._rect.top = 0;
+        _idle._rect.top = 0;
         _state = Position::WALK;
+        _idle._sprite.setTextureRect(_idle._rect);
+        _walk._sprite.setTextureRect(_walk._rect);
         _walk._sprite.move(SPEED_PLAYER, 0);
     } else
         _state = Position::IDLE;

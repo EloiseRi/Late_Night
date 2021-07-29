@@ -10,10 +10,9 @@
 
 #include "Entity.hpp"
 
-#define SPEED_PLAYER 1.8f
+#define SPEED_PLAYER 1.6f
 
 enum class Position { IDLE, WALK };
-
 class Character
 {
     public:
@@ -28,7 +27,6 @@ class Character
         Position _state = Position::IDLE;
         Entity _idle;
         Entity _walk;
-        // sf::Clock _moveClock;
         sf::Clock _animClock;
 };
 
