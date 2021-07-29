@@ -29,6 +29,7 @@ class Play : public Scene
         sf::Clock _catClock;
         sf::Clock _blinkClock;
         sf::Clock _flickClock;
+        sf::Clock _scrollClock;
         sf::Uint8 _catAlphaChan = 0;
         sf::Uint8 _flickAlphaChan = 0;
         sf::Uint8 _blinkAlphaChan = 0;

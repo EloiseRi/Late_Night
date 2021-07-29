@@ -81,19 +81,19 @@ void Play::openCatEyes()
 
 void Play::LoadSprites()
 {
-    // _sprites.push_back(new Entity("img/play/background_long.png"));
-    // _sprites.push_back(new Entity("img/play/paralax1.png"));
-    // _sprites.push_back(new Entity("img/play/paralax2.png"));
     _sprites.push_back(new Entity("img/play/city.png"));
     _sprites.push_back(new Entity("img/play/HotelLight.png"));
     _sprites.push_back(new Entity("img/play/PharmaLight.png"));
     _sprites.push_back(new Entity("img/play/catOE.png"));
     _sprites.push_back(new Entity("img/play/catCE.png"));
+    _sprites.push_back(new Entity("img/play/Light.png"));
 
     for (int i = 0; i <= 3; i++) {
         _sprites[i]->_sprite.setScale(3, 3);
         _sprites[i]->_sprite.setPosition(0, -150);
     }
+    _sprites[5]->_sprite.setScale(3, 3);
+    _sprites[5]->_sprite.setPosition(0, -150);
 
     _sprites[3]->_sprite.setScale(2, 2);
     _sprites[4]->_sprite.setScale(2, 2);
