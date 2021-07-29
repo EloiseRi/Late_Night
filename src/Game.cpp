@@ -2,7 +2,7 @@
 #include <iostream>
 
 Game::Game() :
-_window(sf::VideoMode(800, 600, 32), "Late Night", sf::Style::Default),
+_window(sf::VideoMode(800, 600, 32), "Late Night", sf::Style::Close),
 _event(), _view(sf::FloatRect(0, 0, 800, 600)), _state(State::MENU)
 {
     _window.setFramerateLimit(120);
@@ -50,7 +50,7 @@ void Game::CatchEvent()
             _state = State::PLAY;
     }
     _play.catchEvent(_window, _event, _musics);
-    _rectPos = _player.catchEvent(_window, _event);
+    _rectPos = _player.catchEvent();
 }
 
 void Game::DrawMenu()
@@ -92,12 +92,12 @@ int Game::Loop()
         } else {
             this->DrawGame();
 
-            _viewPos.x = (_rectPos.x + 32) - (800 / 2);
+            _viewPos.x = (_rectPos.x - 32) - (800 / 2);
             
             if (_viewPos.x < 0)
                 _viewPos.x = 0;
-            if (_viewPos.x > 2000)
-                _viewPos.x = 2000;
+            if (_viewPos.x > 1600)
+                _viewPos.x = 1600;
         }
         _view.reset(sf::FloatRect(_viewPos.x, _viewPos.y, 800, 600));
 

@@ -10,7 +10,7 @@
 
 #include "Entity.hpp"
 
-#define SPEED_PLAYER 4500.0f
+#define SPEED_PLAYER 1.8f
 
 enum class Position { IDLE, WALK };
 
@@ -22,13 +22,13 @@ class Character
 
         Entity GetSprites();
         void Animation();
-        sf::Vector2f catchEvent(sf::RenderWindow&, sf::Event&);
+        sf::Vector2f catchEvent();
 
     private:
         Position _state = Position::IDLE;
         Entity _idle;
         Entity _walk;
-        sf::Clock _moveClock;
+        // sf::Clock _moveClock;
         sf::Clock _animClock;
 };
 

@@ -47,12 +47,12 @@ void Play::LoadSprites()
     _sprites.push_back(new Entity("img/play/catOE.png"));
     _sprites.push_back(new Entity("img/play/catCE.png"));
 
-    _sprites[3]->_sprite.setScale(3.5, 3.5);
-    _sprites[3]->_sprite.setPosition(0, -270);
-    _sprites[4]->_sprite.setScale(2.2, 2.2);
-    _sprites[5]->_sprite.setScale(2.2, 2.2);
-    _sprites[4]->_sprite.setPosition(305, -412);
-    _sprites[5]->_sprite.setPosition(305, -412);
+    _sprites[3]->_sprite.setScale(3, 3);
+    _sprites[3]->_sprite.setPosition(0, -150);
+    _sprites[4]->_sprite.setScale(2, 2);
+    _sprites[5]->_sprite.setScale(2, 2);
+    _sprites[4]->_sprite.setPosition(205, -320);
+    _sprites[5]->_sprite.setPosition(205, -320);
 }
 
 void Play::Initialize()
@@ -62,6 +62,9 @@ void Play::Initialize()
 
 int Play::catchEvent(sf::RenderWindow &window, sf::Event &event, std::map<std::string, sf::Music *> &musics)
 {
+    (void)window;
+    (void)event;
+    (void)musics;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) ||
     sf::Keyboard::isKeyPressed(sf::Keyboard::P))
         std::cout << "PAUSE" << std::endl;
