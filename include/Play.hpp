@@ -20,12 +20,20 @@ class Play : public Scene
         void Initialize();
         void LoadSprites();
         void openCatEyes();
+        void Flickering();
+        void Blinking();
         int catchEvent(sf::RenderWindow&, sf::Event&, std::map<std::string, sf::Music *> &musics);
 
     private:
         std::vector<Entity *> _sprites;
         sf::Clock _catClock;
+        sf::Clock _blinkClock;
+        sf::Clock _flickClock;
         sf::Uint8 _catAlphaChan = 0;
+        sf::Uint8 _flickAlphaChan = 0;
+        sf::Uint8 _blinkAlphaChan = 0;
+        bool _flickering = true;
+        bool _blinking = true;
         bool _catEyes = true;
 };
 

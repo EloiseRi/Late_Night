@@ -70,7 +70,10 @@ void Game::DrawMenu()
 
 void Game::DrawGame()
 {
+    _play.Blinking();
+    _play.Flickering();
     _play.openCatEyes();
+    _play.SetShader();
     _player.Animation();
 
     for (auto &sprite : _play.GetSprites())
@@ -92,7 +95,7 @@ int Game::Loop()
         } else {
             this->DrawGame();
 
-            _viewPos.x = (_rectPos.x - 32) - (800 / 2);
+            _viewPos.x = (_rectPos.x + 64) - (800 / 2);
             
             if (_viewPos.x < 0)
                 _viewPos.x = 0;
