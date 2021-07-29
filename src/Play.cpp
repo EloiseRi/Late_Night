@@ -16,14 +16,14 @@ std::vector<Entity *> Play::GetSprites()
 
 void Play::SetShader()
 {
-    _sprites[4]->_sprite.setColor(sf::Color(255, 255, 255, _flickAlphaChan));
-    _sprites[5]->_sprite.setColor(sf::Color(255, 255, 255, _blinkAlphaChan));
-    _sprites[7]->_sprite.setColor(sf::Color(255, 255, 255, _catAlphaChan));
+    _sprites[1]->_sprite.setColor(sf::Color(255, 255, 255, _flickAlphaChan));
+    _sprites[2]->_sprite.setColor(sf::Color(255, 255, 255, _blinkAlphaChan));
+    _sprites[4]->_sprite.setColor(sf::Color(255, 255, 255, _catAlphaChan));
 }
 
 void Play::Blinking()
 {
-    _sprites[5]->_sprite.setColor(sf::Color(0, 0, 0, _blinkAlphaChan));
+    _sprites[2]->_sprite.setColor(sf::Color(0, 0, 0, _blinkAlphaChan));
 
     if (_blinkClock.getElapsedTime().asSeconds() > 1.4f && _blinkAlphaChan < 255.f && _blinking == true) {
         _blinkAlphaChan = 255;
@@ -43,7 +43,7 @@ void Play::Blinking()
 void Play::Flickering()
 {
     float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-    _sprites[4]->_sprite.setColor(sf::Color(0, 0, 0, _flickAlphaChan));
+    _sprites[1]->_sprite.setColor(sf::Color(0, 0, 0, _flickAlphaChan));
 
     if (_blinkClock.getElapsedTime().asSeconds() > r && _flickAlphaChan < 255.f && _flickering == true) {
         _flickAlphaChan = 255;
@@ -62,7 +62,7 @@ void Play::Flickering()
 
 void Play::openCatEyes()
 {
-    _sprites[7]->_sprite.setColor(sf::Color(0, 0, 0, _catAlphaChan));
+    _sprites[4]->_sprite.setColor(sf::Color(0, 0, 0, _catAlphaChan));
 
     if (_catClock.getElapsedTime().asSeconds() > 8.f && _catAlphaChan < 255.f && _catEyes == true) {
         _catAlphaChan = 255;
@@ -81,24 +81,24 @@ void Play::openCatEyes()
 
 void Play::LoadSprites()
 {
-    _sprites.push_back(new Entity("img/play/background_long.png"));
-    _sprites.push_back(new Entity("img/play/paralax1.png"));
-    _sprites.push_back(new Entity("img/play/paralax2.png"));
+    // _sprites.push_back(new Entity("img/play/background_long.png"));
+    // _sprites.push_back(new Entity("img/play/paralax1.png"));
+    // _sprites.push_back(new Entity("img/play/paralax2.png"));
     _sprites.push_back(new Entity("img/play/city.png"));
     _sprites.push_back(new Entity("img/play/HotelLight.png"));
     _sprites.push_back(new Entity("img/play/PharmaLight.png"));
     _sprites.push_back(new Entity("img/play/catOE.png"));
     _sprites.push_back(new Entity("img/play/catCE.png"));
 
-    for (int i = 3; i <= 5; i++) {
+    for (int i = 0; i <= 3; i++) {
         _sprites[i]->_sprite.setScale(3, 3);
         _sprites[i]->_sprite.setPosition(0, -150);
     }
 
-    _sprites[6]->_sprite.setScale(2, 2);
-    _sprites[7]->_sprite.setScale(2, 2);
-    _sprites[6]->_sprite.setPosition(205, -320);
-    _sprites[7]->_sprite.setPosition(205, -320);
+    _sprites[3]->_sprite.setScale(2, 2);
+    _sprites[4]->_sprite.setScale(2, 2);
+    _sprites[3]->_sprite.setPosition(205, -320);
+    _sprites[4]->_sprite.setPosition(205, -320);
 }
 
 void Play::Initialize()
